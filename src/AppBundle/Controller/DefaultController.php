@@ -41,21 +41,5 @@ class DefaultController extends Controller
                 return $this->render('Villanos/villanos.html.twig', array("villanos"=>$values));
             }
 
-             /**
-               * @Route("/login", name="login")
-               */
-              public function loginAction(AuthenticationUtils $authenticationUtils)
-              {
-                  // get the login error if there is one
-                  $error = $authenticationUtils->getLastAuthenticationError();
-
-                  // last username entered by the user
-                  $lastUsername = $authenticationUtils->getLastUsername();
-
-                  return $this->render('Seguridad/login.html.twig', array(
-                      'last_username' => $lastUsername,
-                      'error'         => $error,
-                  ));
-              }
 
 }

@@ -107,14 +107,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // registroVillano
-        if ('/admin/registroVillano' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\AdminController::registroVillanoAction',  '_route' => 'registroVillano',);
-        }
+        elseif (0 === strpos($pathinfo, '/admin')) {
+            // registroVillano
+            if ('/admin/registroVillano' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\AdminController::registroVillanoAction',  '_route' => 'registroVillano',);
+            }
 
-        // registroSuperheroe
-        if ('/admin/registroSuperheroe' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\AdminController::registroSuperheroeAction',  '_route' => 'registroSuperheroe',);
+            // registroSuperheroe
+            if ('/admin/registroSuperheroe' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\AdminController::registroSuperheroeAction',  '_route' => 'registroSuperheroe',);
+            }
+
+            // login
+            if ('/admin/login' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\AdminController::loginAction',  '_route' => 'login',);
+            }
+
+            // logout
+            if ('/admin/logout' === $pathinfo) {
+                return array('_route' => 'logout');
+            }
+
         }
 
         // homepage
@@ -135,16 +148,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // villanos
         if ('/villanos' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indiceAction_villanos',  '_route' => 'villanos',);
-        }
-
-        // login
-        if ('/login' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::loginAction',  '_route' => 'login',);
-        }
-
-        // logout
-        if ('/logout' === $pathinfo) {
-            return array('_route' => 'logout');
         }
 
         if ('/' === $pathinfo && !$allow) {
