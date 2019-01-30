@@ -128,6 +128,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array('_route' => 'logout');
             }
 
+            // villanosAdmin
+            if ('/admin/villanos' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\AdminController::indiceAction_villanos',  '_route' => 'villanosAdmin',);
+            }
+
+            // editarVillano
+            if (0 === strpos($pathinfo, '/admin/editarVillano') && preg_match('#^/admin/editarVillano/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'editarVillano')), array (  '_controller' => 'AppBundle\\Controller\\AdminController::editarVillanoAction',));
+            }
+
         }
 
         // homepage

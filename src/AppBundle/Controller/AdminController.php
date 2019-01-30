@@ -40,7 +40,7 @@ class AdminController extends Controller
                       $entityManager->flush();
                       // ... do any other work - like sending them an email, etc
                       // maybe set a "flash" success message for the user
-                      return $this->redirectToRoute('villanos');
+                      return $this->redirectToRoute('villanosAdmin');
                   }
                   return $this->render(
                       'Villanos/register.html.twig',
@@ -88,11 +88,53 @@ class AdminController extends Controller
                         $entityManager->flush();
                         // ... do any other work - like sending them an email, etc
                         // maybe set a "flash" success message for the user
-                        return $this->redirectToRoute('villanos');
+                        return $this->redirectToRoute('villanosAdmin');
                     }
                     return $this->render(
                         'Justicia/register.html.twig',
                         array('form' => $form->createView())
                     );
+                }
+
+
+            /**
+             * @Route("/villanos", name="villanosAdmin")
+             */
+            public function indiceAction_villanos()
+            {
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Villano');
+                $values = $repository->findAll();
+                return $this->render('Villanos/villanos.html.twig', array("villanos"=>$values));
+            }
+
+                        /**
+              * @Route("/editarVillano/{id}", name="editarVillano")
+              */
+              public function editarVillanoAction($id, Request $request)
+              {
+                  // replace this example code with whatever you need
+                  $em = $this->getDoctrine()->getManager();
+
+                  $usuario = $em->getRepository('AppBundle:Villano')->find($id);
+
+                    $form = $this-> createForm(VillanoType::class, $usuario);
+                           $form->handleRequest($request);
+
+                   if ($form->isSubmitted() && $form->isValid()) {
+
+                     $usuario = $form->getData();
+
+                     $em = $this->getDoctrine()->getManager();
+
+                     $em->persist($usuario);
+
+                      $em->flush();
+
+                     return $this->redirectToRoute('villanosAdmin');
+
+                   }
+
+                   return $this->render('Villanos/register.html.twig', array(
+                'form' => $form->createView(),));
                 }
 }

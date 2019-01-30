@@ -2085,6 +2085,13 @@
         <argument>null</argument>
       </call>
       <call method="add">
+        <argument type="service" id="security.request_matcher.lq5najh"/>
+        <argument type="collection">
+          <argument>ROLE_RESTO</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
         <argument type="service" id="security.request_matcher.yk6k2aj"/>
         <argument type="collection">
           <argument>ROLE_BATMAN</argument>
@@ -2376,6 +2383,9 @@
     </service>
     <service id="security.request_matcher.4ekja4t" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/admin/login</argument>
+    </service>
+    <service id="security.request_matcher.lq5najh" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/villanos</argument>
     </service>
     <service id="security.request_matcher.yk6k2aj" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/admin</argument>

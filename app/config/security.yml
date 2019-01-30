@@ -40,4 +40,5 @@ security:
             #form_login: ~
     access_control:
             - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/villanos, roles: ROLE_RESTO } 
             - { path: ^/admin, roles: ROLE_BATMAN } 
